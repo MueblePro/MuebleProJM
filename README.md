@@ -1,17 +1,33 @@
-# MueblePro V20.6 — IA real
+# MueblePro V20.7 — IA + módulos preliminares
 
-Esta versión conecta la fotografía del cliente con la OpenAI Responses API desde una función serverless. La clave **OPENAI_API_KEY nunca debe ir en index.html ni en GitHub**.
+V20.7 conserva la interfaz sencilla de 5 pasos y agrega una segunda capa al análisis visual: la IA propone módulos preliminares editables.
 
-## Despliegue recomendado
+## Qué agrega V20.7
+- Análisis real de fotografía mediante `/api/analyze`.
+- Propuesta preliminar de módulos con nombre, tipo, ancho, alto, profundidad, cantidad y motivo.
+- Edición directa de las dimensiones preliminares de cada módulo.
+- Identificación visible de módulos suspendidos que requieren **BASE EXTERNA** según la regla técnica de MueblePro.
+- Resumen de módulos y centímetros lineales preliminares.
+- No calcula todavía despiece, consumo de tablero, herrajes exactos ni cotización técnica real.
 
-1. Sube esta carpeta completa a un repositorio de GitHub.
-2. Importa el repositorio en Vercel.
-3. En Vercel → Settings → Environment Variables crea `OPENAI_API_KEY` con tu clave de OpenAI y aplica Production/Preview/Development.
-4. Redeploy.
-5. Abre la URL de Vercel en el celular.
+## Estructura para Vercel
+- `index.html`
+- `api/analyze.js`
+- `package.json`
+- `vercel.json`
 
-La función usa Node.js 22 y el SDK oficial de OpenAI. La foto se comprime en el navegador antes de enviarse. El análisis devuelve JSON estructurado con tipo de mueble, distribución, medidas estimadas, módulos sugeridos, obstáculos y confianza.
+## Variable de entorno
+En Vercel debe existir:
+- `OPENAI_API_KEY` → Production → Secret
 
-## Importante
+Nunca pongas la clave dentro de `index.html` ni la subas a GitHub.
 
-La API de OpenAI es de pago por uso; Vercel puede alojar el backend dentro de sus opciones gratuitas, pero las llamadas al modelo de OpenAI generan consumo de API. No publiques nunca la API key en el frontend o en GitHub.
+## Despliegue
+1. Subir los archivos manteniendo `api/analyze.js` directamente dentro de `api/`.
+2. Verificar que `vercel.json` no contenga una configuración manual de runtime.
+3. En Vercel conservar `OPENAI_API_KEY` en Production.
+4. Hacer Redeploy después de modificar la variable.
+5. Probar una fotografía desde el Paso 2.
+
+## Próxima etapa prevista
+Conectar los módulos preliminares con la base técnica de MueblePro para pasar a despiece, tableros, herrajes y cotización real sin exponer costos internos al cliente.
