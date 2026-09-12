@@ -1,17 +1,19 @@
-# MueblePro V20.6 — IA real
+# MueblePro V20.6.2 — IA real
 
-Esta versión conecta la fotografía del cliente con la OpenAI Responses API desde una función serverless. La clave **OPENAI_API_KEY nunca debe ir en index.html ni en GitHub**.
+Estructura preparada para Vercel: `index.html` y la carpeta `api/` están directamente en la raíz del proyecto.
 
-## Despliegue recomendado
+## Despliegue
+1. Sube/reemplaza estos archivos en la raíz de tu repositorio GitHub `MuebleProJM`.
+2. Conserva tu variable `OPENAI_API_KEY` en Vercel. No la pongas en GitHub ni en `index.html`.
+3. Haz Redeploy en Vercel.
+4. Prueba `https://TU-PROYECTO.vercel.app/api/analyze`: al abrirla directamente debe responder `Método no permitido` (eso confirma que la función existe).
+5. Abre MueblePro, sube una foto y pulsa `Analizar fotografía con IA`.
 
-1. Sube esta carpeta completa a un repositorio de GitHub.
-2. Importa el repositorio en Vercel.
-3. En Vercel → Settings → Environment Variables crea `OPENAI_API_KEY` con tu clave de OpenAI y aplica Production/Preview/Development.
-4. Redeploy.
-5. Abre la URL de Vercel en el celular.
+## Estructura
+- `index.html`
+- `api/analyze.js`
+- `package.json`
+- `vercel.json`
+- `.env.example`
 
-La función usa Node.js 22 y el SDK oficial de OpenAI. La foto se comprime en el navegador antes de enviarse. El análisis devuelve JSON estructurado con tipo de mueble, distribución, medidas estimadas, módulos sugeridos, obstáculos y confianza.
-
-## Importante
-
-La API de OpenAI es de pago por uso; Vercel puede alojar el backend dentro de sus opciones gratuitas, pero las llamadas al modelo de OpenAI generan consumo de API. No publiques nunca la API key en el frontend o en GitHub.
+La API de OpenAI es de pago por uso. La clave permanece únicamente en el servidor mediante `OPENAI_API_KEY`.
