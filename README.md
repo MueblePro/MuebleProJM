@@ -1,6 +1,6 @@
-# MueblePro V20.7 — IA + módulos preliminares
+# MueblePro V20.8.1 — IA + módulos + motor técnico preliminar
 
-V20.7 conserva la interfaz sencilla de 5 pasos y agrega una segunda capa al análisis visual: la IA propone módulos preliminares editables.
+V20.8.1 conserva la interfaz sencilla de 5 pasos y agrega una segunda capa al análisis visual: la IA propone módulos preliminares editables.
 
 ## Qué agrega V20.7
 - Análisis real de fotografía mediante `/api/analyze`.
@@ -35,3 +35,10 @@ Conectar los módulos preliminares con la base técnica de MueblePro para pasar 
 
 ## V20.8
 Convierte los módulos preliminares en un pre-cálculo geométrico de piezas, área de tablero 15 mm, respaldo 6 mm y metros lineales de canto. No sustituye un despiece optimizado pieza por pieza ni una lista de precios vigente.
+
+
+## V20.8.1 — Correcciones
+- Actualiza la etiqueta de versión de la interfaz.
+- Mantiene el flujo visible de 5 pasos.
+- El valor comercial se muestra como "Pendiente" en lugar de un precio inventado o no sustentado.
+- La pantalla aclara que el cálculo actual es preliminar y que la cotización comercial requiere despiece y una lista de precios vigente.
