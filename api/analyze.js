@@ -14,9 +14,10 @@ const moduleSchema = {
     cantidad: { type: "integer", minimum: 1 },
     motivo: { type: "string" },
     suspendido: { type: "boolean" },
-    base_externa_requerida: { type: "boolean" }
+    base_externa_requerida: { type: "boolean" },
+    perfil: { type: "string", enum: ["Bajo_caja", "Alto_suspendido", "Torre", "Especial"] }
   },
-  required: ["nombre", "tipo", "ancho_estimado_cm", "alto_estimado_cm", "profundidad_cm", "cantidad", "motivo", "suspendido", "base_externa_requerida"]
+  required: ["nombre", "tipo", "ancho_estimado_cm", "alto_estimado_cm", "profundidad_cm", "cantidad", "motivo", "suspendido", "base_externa_requerida", "perfil"]
 };
 
 const schema = {
@@ -58,9 +59,9 @@ Analiza la fotografía como una primera visita técnica. No inventes medidas exa
 
 Identifica geometría del espacio, muebles existentes, electrodomésticos, ventanas, puertas, columnas, enchufes, puntos visibles y obstáculos. Propón una distribución coherente con el tipo de mueble seleccionado.
 
-NUEVO EN V20.7: genera una propuesta preliminar de módulos. Cada módulo debe tener nombre claro para el cliente, tipo, ancho/alto/profundidad estimados, cantidad y motivo. No generes módulos absurdos ni dupliques elementos. La suma de los anchos de los módulos de una misma línea debe ser razonable frente al ancho estimado del proyecto; si hay una ventana u obstáculo, deja espacio libre y explícalo. Prioriza módulos funcionales y deja los especiales solo cuando la foto lo justifique.
+NUEVO EN V20.7/V20.8: genera una propuesta preliminar de módulos. Cada módulo debe tener nombre claro para el cliente, tipo, ancho/alto/profundidad estimados, cantidad y motivo. No generes módulos absurdos ni dupliques elementos. La suma de los anchos de los módulos de una misma línea debe ser razonable frente al ancho estimado del proyecto; si hay una ventana u obstáculo, deja espacio libre y explícalo. Prioriza módulos funcionales y deja los especiales solo cuando la foto lo justifique.
 
-REGLA TÉCNICA DE MUEBLEPRO: los muebles altos, superiores, suspendidos o colgantes usan BASES EXTERNAS. Si un módulo es suspendido, base_externa_requerida debe ser true. No calcules despiece, herrajes exactos ni precios en esta etapa.
+REGLA TÉCNICA DE MUEBLEPRO: los muebles altos, superiores, suspendidos o colgantes usan BASES EXTERNAS. Si un módulo es suspendido, base_externa_requerida debe ser true. V20.8: asigna además un perfil constructivo preliminar (Bajo_caja, Alto_suspendido, Torre o Especial) para permitir un pre-cálculo geométrico de piezas. No calcules todavía un despiece optimizado, mecanizados, herrajes exactos ni precios.
 
 La aplicación mostrará estos módulos como una propuesta editable. Por eso debes ser conservador y marcar la propuesta como preliminar mediante motivos y recomendación. Si algo no puede determinarse, dilo en obstáculos o recomendación.
 
@@ -68,11 +69,11 @@ Devuelve solamente el JSON solicitado. ${context}`,
       input: [{
         role: "user",
         content: [
-          { type: "input_text", text: "Analiza esta fotografía y prepara el análisis visual y la propuesta preliminar de módulos de MueblePro V20.7." },
+          { type: "input_text", text: "Analiza esta fotografía y prepara el análisis visual y la propuesta preliminar de módulos de MueblePro V20.8." },
           { type: "input_image", image_url: image, detail: "high" }
         ]
       }],
-      text: { format: { type: "json_schema", name: "mueblepro_analisis_v207", strict: true, schema } }
+      text: { format: { type: "json_schema", name: "mueblepro_analisis_v208", strict: true, schema } }
     });
 
     let data;

@@ -31,3 +31,7 @@ Nunca pongas la clave dentro de `index.html` ni la subas a GitHub.
 
 ## Próxima etapa prevista
 Conectar los módulos preliminares con la base técnica de MueblePro para pasar a despiece, tableros, herrajes y cotización real sin exponer costos internos al cliente.
+
+
+## V20.8
+Convierte los módulos preliminares en un pre-cálculo geométrico de piezas, área de tablero 15 mm, respaldo 6 mm y metros lineales de canto. No sustituye un despiece optimizado pieza por pieza ni una lista de precios vigente.
