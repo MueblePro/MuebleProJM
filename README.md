@@ -1,17 +1,14 @@
-# MueblePro V20.9 — Despiece técnico preliminar
+# MueblePro V20.10 — Motor constructivo
 
-V20.9 parte de V20.8.1 y agrega un despiece paramétrico preliminar por módulo.
+Versión desplegable para Vercel.
 
-## Qué hace
-- Conserva el flujo simple de 5 pasos.
-- Conserva análisis visual con `/api/analyze` y la variable `OPENAI_API_KEY` en Vercel.
-- Convierte cada módulo preliminar en una lista de piezas de referencia.
-- Muestra dimensiones nominales en mm, material de referencia (Tablero 15 mm o Respaldo 6 mm) y canto aproximado.
-- Marca las bases externas requeridas para módulos altos/suspendidos.
-- No inventa precios ni presenta una cotización comercial.
+V20.10 toma los módulos preliminares de la IA y aplica reglas constructivas paramétricas por perfil (bajo/caja, alto suspendido, torre y especial). Mantiene el despiece como preliminar: no inventa precios y no considera definitivos los descuentos de puertas/cajones, mecanizados, veta, herrajes ni medidas de bases externas.
 
-## Importante
-El despiece es paramétrico/preliminar. Antes de fabricar deben validarse: sistema constructivo, descuentos de puertas/frentes, mecanizados, ranuras, veta, orientación de corte, herrajes, respaldos, bases externas y medidas de obra.
+Estructura en raíz:
+- index.html
+- api/analyze.js
+- package.json
+- vercel.json
+- .env.example
 
-## Despliegue
-Mantener `OPENAI_API_KEY` solamente en Vercel. No subir claves a GitHub.
+Mantener `OPENAI_API_KEY` únicamente como variable Secret/Production en Vercel. No subir claves a GitHub.
